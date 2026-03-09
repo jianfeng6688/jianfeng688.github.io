@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 刪除重複的viewport，只保留一行核心适配代碼 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>李建峰 - 個人主頁</title>
@@ -220,6 +220,7 @@
             min-width: 300px;
         }
 
+        /* 替換原圖標為純文字+自定義樣式，避免加載外部圖標庫 */
         .contact-info p {
             font-size: 16px;
             color: #495057;
@@ -228,8 +229,9 @@
             align-items: center;
             gap: 10px;
         }
-
-        .contact-info p i {
+        /* 自定義替代圖標的小標記 */
+        .contact-info p::before {
+            content: "●";
             color: #ffc107;
             font-size: 18px;
         }
@@ -323,9 +325,14 @@
                 justify-content: center;
             }
         }
+        /* 補充小屏手機适配，避免導航遮擋 */
+        @media (max-width: 480px) {
+            .container {
+                margin-top: 100px;
+            }
+        }
     </style>
-    <!-- 引入圖標（聯繫方式用） -->
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 刪除會導致加載卡死的國外圖標庫鏈接 -->
 </head>
 <body>
     <!-- 導航欄（錨點跳轉，點擊直接跳到對應板塊） -->
@@ -343,7 +350,7 @@
 
     <!-- 主內容容器（長頁面，所有內容依次展示） -->
     <div class="container">
-        <!-- 1. 個人簡介板塊 -->
+        <!-- 1. 個人簡介板塊（保留你的自定義信息） -->
         <section id="profile" class="card">
             <h2 class="page-title">個人簡介</h2>
             <div class="profile-content">
@@ -360,7 +367,7 @@
             </div>
         </section>
 
-        <!-- 2. 工作介紹板塊 -->
+        <!-- 2. 工作介紹板塊（保留你的內容） -->
         <section id="work" class="card">
             <h2 class="page-title">工作介紹</h2>
             
@@ -389,7 +396,7 @@
             </div>
         </section>
 
-        <!-- 3. 作品展示板塊 -->
+        <!-- 3. 作品展示板塊（保留你的圖片路徑和內容） -->
         <section id="works" class="card">
             <h2 class="page-title">作品展示</h2>
             <p style="color: #6c757d; margin-bottom: 20px;">以下為本人部分攝影作品，更多作品可聯繫諮詢</p>
@@ -445,17 +452,16 @@
             </div>
         </section>
 
-        <!-- 4. 聯繫方式板塊 -->
+        <!-- 4. 聯繫方式板塊（保留你的自定義聯繫信息，刪除圖標標籤） -->
         <section id="contact" class="card">
             <h2 class="page-title">聯繫方式</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <p><i class="fas fa-phone"></i> 聯繫電話：080XXXX8888</p>
-                   
-                    <p><i class="fas fa-envelope"></i> 信箱：jianfeng8882@gmail.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> 工作室地址：日本105-0022 Tokyo,Minato City,Kaigan,2-chome-2，末橋</p>
-                    <p><i class="fas fa-clock"></i> 工作時間：週一至週日 9:00-18:00（需提前預約）</p>
-                    <p style="margin-top: 20px; color: #333;">歡迎隨時聯繫諮詢拍攝事宜，我將根據你的需求定制專屬方案，真誠為你服務！</p>
+                    <p>聯繫電話：080XXXX8888</p>
+                    <p>信箱：jianfeng8882@gmail.com</p>
+                    <p>工作室地址：日本105-0022 Tokyo,Minato City,Kaigan,2-chome-2，末橋</p>
+                    <p>工作時間：週一至週日 9:00-18:00（需提前預約）</p>
+                    <p style="margin-top: 20px; color: #333; padding-left: 20px;">歡迎隨時聯繫諮詢拍攝事宜，我將根據你的需求定制專屬方案，真誠為你服務！</p>
                 </div>
                 <div class="contact-form">
                     <form>
@@ -478,12 +484,12 @@
         </section>
     </div>
 
-    <!-- 頁腳 -->
+    <!-- 頁腳（保留你的內容） -->
     <footer>
         <p>© 2026 李建峰攝影工作室 | 用鏡頭記錄美好，用專業創造價值 | 版權所有</p>
     </footer>
 
-    <!-- 錨點跳轉平滑滾動腳本 -->
+    <!-- 錨點跳轉平滑滾動腳本（保留） -->
     <script>
         // 導航錨點平滑滾動
         document.querySelectorAll('.navbar-menu a').forEach(link => {
