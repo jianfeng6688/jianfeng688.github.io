@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <!-- 刪除重複的viewport，只保留一行核心适配代碼 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>李建峰 - 個人主頁</title>
@@ -91,7 +90,7 @@
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-            margin-bottom: 40px; /* 增加卡片間距，長頁面更美觀 */
+            margin-bottom: 40px;
         }
 
         /* 1. 個人簡介板塊 */
@@ -136,7 +135,61 @@
             line-height: 1.8;
         }
 
-        /* 2. 工作介紹板塊 */
+        /* 2. 個人榮譽板塊（升級版：照片+文字） */
+        .honor-item {
+            margin-bottom: 35px;
+            padding: 20px;
+            border-left: 3px solid #ffc107;
+            background-color: #fffdf8;
+            border-radius: 0 8px 8px 0;
+        }
+        .honor-content {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .honor-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        .honor-text h4 {
+            font-size: 19px;
+            color: #212529;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .honor-text h4 .year {
+            font-size: 16px;
+            color: #6c757d;
+            font-weight: normal;
+        }
+        .honor-text p {
+            font-size: 15px;
+            color: #495057;
+            line-height: 1.8;
+        }
+        .honor-img {
+            flex-shrink: 0;
+            width: 220px;
+            height: 160px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .honor-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        .honor-img img:hover {
+            transform: scale(1.05);
+        }
+
+        /* 3. 工作介紹板塊 */
         .work-item {
             margin-bottom: 30px;
         }
@@ -166,7 +219,7 @@
             margin-bottom: 8px;
         }
 
-        /* 3. 作品展示板塊 */
+        /* 4. 作品展示板塊 */
         .works-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -207,7 +260,7 @@
             color: #6c757d;
         }
 
-        /* 4. 聯繫方式板塊 */
+        /* 5. 聯繫方式板塊 */
         .contact-content {
             display: flex;
             gap: 40px;
@@ -220,7 +273,6 @@
             min-width: 300px;
         }
 
-        /* 替換原圖標為純文字+自定義樣式，避免加載外部圖標庫 */
         .contact-info p {
             font-size: 16px;
             color: #495057;
@@ -229,7 +281,6 @@
             align-items: center;
             gap: 10px;
         }
-        /* 自定義替代圖標的小標記 */
         .contact-info p::before {
             content: "●";
             color: #ffc107;
@@ -324,7 +375,25 @@
             .contact-info p {
                 justify-content: center;
             }
+
+            /* 榮譽板塊手機端适配 */
+            .honor-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .honor-text h4 {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            .honor-img {
+                width: 100%;
+                max-width: 300px;
+                height: 200px;
+            }
         }
+
         /* 補充小屏手機适配，避免導航遮擋 */
         @media (max-width: 480px) {
             .container {
@@ -332,15 +401,15 @@
             }
         }
     </style>
-    <!-- 刪除會導致加載卡死的國外圖標庫鏈接 -->
 </head>
 <body>
-    <!-- 導航欄（錨點跳轉，點擊直接跳到對應板塊） -->
+    <!-- 導航欄 -->
     <nav class="navbar">
         <div class="navbar-container">
             <a href="#" class="navbar-logo">李建峰</a>
             <ul class="navbar-menu">
                 <li><a href="#profile">個人簡介</a></li>
+                <li><a href="#honor">個人榮譽</a></li>
                 <li><a href="#work">工作介紹</a></li>
                 <li><a href="#works">作品展示</a></li>
                 <li><a href="#contact">聯繫方式</a></li>
@@ -348,9 +417,9 @@
         </div>
     </nav>
 
-    <!-- 主內容容器（長頁面，所有內容依次展示） -->
+    <!-- 主內容容器 -->
     <div class="container">
-        <!-- 1. 個人簡介板塊（保留你的自定義信息） -->
+        <!-- 1. 個人簡介板塊 -->
         <section id="profile" class="card">
             <h2 class="page-title">個人簡介</h2>
             <div class="profile-content">
@@ -367,7 +436,73 @@
             </div>
         </section>
 
-        <!-- 2. 工作介紹板塊（保留你的內容） -->
+        <!-- 2. 個人榮譽板塊（帶照片） -->
+        <section id="honor" class="card">
+            <h2 class="page-title">個人榮譽</h2>
+            <p style="color: #6c757d; margin-bottom: 30px;">從業多年來，憑藉專業的攝影技術和獨特的創作理念，獲得業內多項權威認可：</p>
+            
+            <div class="honor-item">
+                <div class="honor-content">
+                    <div class="honor-text">
+                        <h4>日本攝影家協會「年度最佳人像攝影師」<span class="year">2019</span></h4>
+                        <p>憑藉《光影中的東方溫度》系列中老年寫真作品，獲評該年度日本人像攝影最高獎項，作品入選日本攝影美術館年度展覽，被譽為「最具人文溫度的人像創作者」。</p>
+                    </div>
+                    <div class="honor-img">
+                        <img src="./images/hezhao.jpg" alt="2019年日本最佳人像攝影師頒獎現場">
+                    </div>
+                </div>
+            </div>
+
+            <div class="honor-item">
+                <div class="honor-content">
+                    <div class="honor-text">
+                        <h4>東京國際攝影大展「金獎」<span class="year">2021</span></h4>
+                        <p>參展作品《家族時光》全家福系列，以溫馨的光影表達和真實的情感捕捉，斬獲家庭攝影類別金獎，作品被東京攝影博物館永久收藏。</p>
+                    </div>
+                    <div class="honor-img">
+                        <img src="./images/jinjiang.jpg" alt="2021年東京國際攝影大展金獎作品">
+                    </div>
+                </div>
+            </div>
+
+            <div class="honor-item">
+                <div class="honor-content">
+                    <div class="honor-text">
+                        <h4>亞洲商業攝影大賽「優秀獎」<span class="year">2022</span></h4>
+                        <p>為日本知名企業拍攝的品牌宣傳組照，憑藉精準的產品質感呈現和商業價值融合，獲得商業攝影類別優秀獎，成為業界商業拍攝範例。</p>
+                    </div>
+                    <div class="honor-img">
+                        <img src="./images/youxiu.jpg" alt="2022年亞洲商業攝影大賽優秀獎證書">
+                    </div>
+                </div>
+            </div>
+
+            <div class="honor-item">
+                <div class="honor-content">
+                    <div class="honor-text">
+                        <h4>日本大學藝術學部「客座講師」聘書<span class="year">2023-至今</span></h4>
+                        <p>受邀擔任母校攝影專業客座講師，主講「人像光影把控」「商業攝影實戰」等課程，培養專業攝影人才超200人，推動行業人才培育。</p>
+                    </div>
+                    <div class="honor-img">
+                        <img src="./images/jiangshi.jpg" alt="日本大學藝術學部客座講師聘書">
+                    </div>
+                </div>
+            </div>
+
+            <div class="honor-item">
+                <div class="honor-content">
+                    <div class="honor-text">
+                        <h4>東京都攝影業協會「行業傑出貢獻獎」<span class="year">2024</span></h4>
+                        <p>因長期推動中小企業商業攝影標準化、提升行業服務品質，獲頒行業傑出貢獻獎，工作室被評為「東京都放心攝影機構」。</p>
+                    </div>
+                    <div class="honor-img">
+                        <img src="./images/zhengshu.jpg" alt="2025年東京都攝影業協會傑出貢獻獎">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 工作介紹板塊 -->
         <section id="work" class="card">
             <h2 class="page-title">工作介紹</h2>
             
@@ -396,7 +531,7 @@
             </div>
         </section>
 
-        <!-- 3. 作品展示板塊（保留你的圖片路徑和內容） -->
+        <!-- 4. 作品展示板塊 -->
         <section id="works" class="card">
             <h2 class="page-title">作品展示</h2>
             <p style="color: #6c757d; margin-bottom: 20px;">以下為本人部分攝影作品，更多作品可聯繫諮詢</p>
@@ -452,7 +587,7 @@
             </div>
         </section>
 
-        <!-- 4. 聯繫方式板塊（保留你的自定義聯繫信息，刪除圖標標籤） -->
+        <!-- 5. 聯繫方式板塊 -->
         <section id="contact" class="card">
             <h2 class="page-title">聯繫方式</h2>
             <div class="contact-content">
@@ -460,7 +595,7 @@
                     <p>聯繫電話：080XXXX8888</p>
                     <p>信箱：jianfeng8882@gmail.com</p>
                     <p>工作室地址：日本105-0022 Tokyo,Minato City,Kaigan,2-chome-2，末橋</p>
-                    <p>工作時間：週一至週日 9:00-18:00（需提前預約）</p>
+                    <p>工作時間：週一至週五 9:00-18:00（需提前預約）</p>
                     <p style="margin-top: 20px; color: #333; padding-left: 20px;">歡迎隨時聯繫諮詢拍攝事宜，我將根據你的需求定制專屬方案，真誠為你服務！</p>
                 </div>
                 <div class="contact-form">
@@ -484,14 +619,13 @@
         </section>
     </div>
 
-    <!-- 頁腳（保留你的內容） -->
+    <!-- 頁腳 -->
     <footer>
         <p>© 2026 李建峰攝影工作室 | 用鏡頭記錄美好，用專業創造價值 | 版權所有</p>
     </footer>
 
-    <!-- 錨點跳轉平滑滾動腳本（保留） -->
+    <!-- 錨點跳轉平滑滾動腳本 -->
     <script>
-        // 導航錨點平滑滾動
         document.querySelectorAll('.navbar-menu a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -499,7 +633,7 @@
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80, // 偏移80px避開固定導航
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
